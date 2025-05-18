@@ -69,6 +69,28 @@ app.patch("/update/:id", (req, res) => {
   }
 });
 
+app.delete("/delete/:id", (req, res) => {
+  try {
+    const id = req.params.id;
+    const deleteUser = users.findIndex((user) => {
+      return user.id == id;
+    });
+    if (deleteUser === -1) {
+      return res.status(404).send({
+        message: "User not found",
+      });
+    }
+    users.splice(deleteUser, 1);
+    return res.status(200).send({
+      message: "User deleted successfully",
+    });
+  } catch (err) {
+    return res.status(500).send({
+      message: "Internal Server Error",
+      error: err,
+    });
+  }
+});
 app.listen(3000, () => {
   console.log("Application is running ");
 });
