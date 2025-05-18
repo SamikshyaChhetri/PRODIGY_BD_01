@@ -5,6 +5,7 @@ const app = express();
 app.use(express.json());
 
 const users = [];
+//Create User
 app.post("/Create", (req, res) => {
   try {
     createSchema.parse(req.body);
@@ -27,6 +28,14 @@ app.post("/Create", (req, res) => {
       error: e,
     });
   }
+});
+
+//Read users
+app.get("/read", (req, res) => {
+  return res.status(200).send({
+    data: users,
+    message: "Users retrieved successfully",
+  });
 });
 
 app.listen(3000, () => {
