@@ -69,6 +69,7 @@ app.patch("/update/:id", (req, res) => {
   }
 });
 
+//Delete
 app.delete("/delete/:id", (req, res) => {
   try {
     const id = req.params.id;
